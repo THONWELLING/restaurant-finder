@@ -15,7 +15,7 @@ const Home = () => {
             <Search>
                 <Logo src={logo} alt="logo do restaurante" />
                 < TextField 
-                    label = 'Pesquisar Restaurantes' 
+                    label = 'Pesquisar Por Restaurantes' 
                     outLined
                     //onTrailingIconSelect = {() =>this.setState({value:''})} 
                     trailingIcon = {<MaterialIcon role="button" icon="search" />} 
