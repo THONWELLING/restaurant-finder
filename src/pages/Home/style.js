@@ -1,6 +1,9 @@
 import styled from 'styled-components';
 
-
+export const Wrapper = styled.div`
+    display: flex;
+    flex-direction: row;
+    `;
 
 export const Container = styled.aside`
     background-color: ${(props) => props.theme.colors.background};
@@ -14,7 +17,15 @@ export const Search = styled.section`
     flex-direction: column;
     justify-content: center;
     background-color: #fffff;
-    padding: 18px;
+    padding: 22px;
+`;
+export const Logo = styled.img`
+    margin-bottom: 15px;
+`;
+
+export const Map = styled.div`
+background-color: black;
+width: 500px;
 `;
 
 

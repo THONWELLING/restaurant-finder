@@ -1,28 +1,34 @@
 import React, { useState } from 'react';
-import { Container, Search } from './style';
+import { Container, Search, Logo, Wrapper,Map } from './style';
 import  TextField, { Input }  from '@material/react-text-field';
+import MaterialIcon from '@material/react-material-icon';
 import logo from '../../assets/logo.svg';
-import { useState } from 'react';
+
 
 
 
 const Home = () => {
-    const [inputValue, setInputValue] =useState('');
+    const [inputValue, setInputValue] = useState('');
     return (
-    <Container>
-        <Search>
-            <img src={logo} alt="logo do restaurante" />
-            < TextField 
-                label = 'Pesquisar' 
-                outLined
-                onTrailingIconSelect = {() => this.setState({value:''})} 
-                //trailingIcon = {<PapeldeMaterialIcon ="botão"icon="delete" />} 
-                > < Input 
-                value = { this . estado . valor } 
-                onChange= {(e) => setInputValue(e.target.value)} /> 
-            </TextField>
-        </Search>
-    </Container>
+    <Wrapper>
+        <Container>
+            <Search>
+                <Logo src={logo} alt="logo do restaurante" />
+                < TextField 
+                    label = 'Pesquisar Restaurantes' 
+                    outLined
+                    //onTrailingIconSelect = {() =>this.setState({value:''})} 
+                    trailingIcon = {<MaterialIcon role="button" icon="search" />} 
+                    > 
+                    < Input 
+                        value = {inputValue} 
+                        onChange={(e) => setInputValue(e.target.value)} 
+                    /> 
+                </TextField>
+            </Search>
+        </Container>
+        <Map />
+    </Wrapper>
     );
 }
 
