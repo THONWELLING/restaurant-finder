@@ -10,11 +10,12 @@ const RestaurantCard = () => (
             <RestaurantInfo>
                 <Title>Nome do Restaurante</Title>
                 <ReactStars 
-                count={5} 
-                isHalf 
-                value={5}
-                edit={false}
-                activeColor= "#ffd700" />
+                    count={5} 
+                    isHalf 
+                    value={5}
+                    edit={false}
+                    activeColor= "#ffd700" 
+                />
                 <Address>Avenida José Brumatti,2538</Address>
             </RestaurantInfo>
             <RestaurantPhoto src={restaurante} alt="Foto do Restaurante" />
