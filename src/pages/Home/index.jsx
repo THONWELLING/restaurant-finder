@@ -7,7 +7,7 @@ import MaterialIcon from '@material/react-material-icon';
 
 import restaurante from '../../assets/restaurante-fake.png';
 import logo from '../../assets/logo.svg';
-import { Card } from '../../components';
+import { Card, RestaurantCard } from '../../components';
 
 
 
@@ -42,19 +42,20 @@ const Home = () => {
                 </TextField>
                 <CarouselTitle>Na sua Área</CarouselTitle>
                 <Carousel {...settings}>
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
-                    <Card photo={restaurante} />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
+                    <Card photo={restaurante} title="unknow name" />
                 </Carousel>
             </Search>
+            <RestaurantCard />
         </Container>
         <Map />
     </Wrapper>

@@ -13,7 +13,7 @@ background-size: cover;
 `;
 
 const Title = styled.span`
-    font-family: ${(props) => props.theme.fonts.regular.name};
+    font-family: ${(props) => props.theme.fonts.regular};
     color: #ffff;
     font-size: 16px;
 `;
