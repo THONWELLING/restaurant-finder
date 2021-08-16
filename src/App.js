@@ -3,7 +3,7 @@ import { Provider } from 'react-redux';
 import Home from './pages/Home';
 import { ThemeProvider } from 'styled-components';
 import { Reset } from 'styled-reset';
-import store from './redux/store';
+import store from './Redux/store';
 import theme from './theme';
 
 function App() {
