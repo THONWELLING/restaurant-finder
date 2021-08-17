@@ -32,7 +32,7 @@ width: 500px;
 
 export const Carousel = styled(Slider)`
     .slick-slide {
-        margin-right: 16px;
+        margin-right: 26px;
     }
 `;
 
@@ -44,5 +44,3 @@ font-weight: bold;
 line-height: 29px;
 margin: 16px 0 ;
 `;
-
-

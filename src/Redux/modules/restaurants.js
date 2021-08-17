@@ -12,17 +12,15 @@ export default function reducer(state = initialState, action) {
   switch(action.type) {
     case Types.SET_RESTAURANTS:
     return{...state, restaurants: action.payload};
-
     case Types.SET_RESTAURANT:
     return{...state, restaurant: action.payload};
-
     default:
       return state;
   }
-};
+}
 
 export function setRestaurants(restaurants) {
-  return{
+  return {
     type: Types.SET_RESTAURANTS,
     payload: restaurants,
   };
