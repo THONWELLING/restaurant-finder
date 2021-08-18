@@ -8,7 +8,7 @@ import MaterialIcon from '@material/react-material-icon';
 
 import restaurante from '../../assets/restaurante-fake.png';
 import logo from '../../assets/logo.svg';
-import { Card, RestaurantCard, Modal, Map } from '../../components';
+import { Card, RestaurantCard, Modal, Map, Loader, Skeleton } from '../../components';
 
 
 
@@ -17,7 +17,7 @@ const Home = () => {
     const [inputValue, setInputValue] = useState('');
     const [query, setQuery] = useState(null);
     const [placeId, setPlaceId] = useState(null);
-    const [modalOpened, setModalOpened] = useState(true);
+    const [modalOpened, setModalOpened] = useState(false);
     const { restaurants, restaurantSelected } = useSelector((state) => state.restaurants);
 
     const settings = {
@@ -49,7 +49,6 @@ const Home = () => {
                 < TextField 
                     label = 'Pesquisar Por Restaurantes' 
                     outlined
-                    //onTrailingIconSelect = {() =>this.setState({value:''})} 
                     trailingIcon = {<MaterialIcon role="button" icon="search" />} 
                     > 
                     < Input 
@@ -58,28 +57,53 @@ const Home = () => {
                         onChange={(e) => setInputValue(e.target.value)}
                     />
                 </TextField>
-                <CarouselTitle>Na sua Área</CarouselTitle>
-                <Carousel {...settings}>
-                    {restaurants.map((restaurant) => (
-                    <Card
-                        key={restaurant.place_id}
-                        photo={restaurant.photos ? restaurant.photos[0].getUrl() : restaurante}
-                        title={restaurant.name}
-                    />
-                    ))}
-                </Carousel>
+                {restaurants.length > 0 ? (
+                    <>
+                        <CarouselTitle>Na sua Área</CarouselTitle>
+                        <Carousel {...settings}>
+                            {restaurants.map((restaurant) => (
+                            <Card
+                                key={restaurant.place_id}
+                                photo={restaurant.photos ? restaurant.photos[0].getUrl() : restaurante}
+                                title={restaurant.name}
+                            />
+                            ))}
+                        </Carousel>
+                    
+                    </>
+                ) : (
+                <Loader />
+                )}
+
             </Search>
             {restaurants.map((restaurant) => (
-            <RestaurantCard onClick={() => handleOpenModal(restaurant.place_id)}
+            <RestaurantCard 
+            key={restaurant.place_id} 
+            onClick={() => handleOpenModal(restaurant.place_id)}
             restaurant={restaurant} />
             ))};
         </Container>
         <Map query={query} placeId={placeId} />
         <Modal open={modalOpened} onClose={() => setModalOpened(!modalOpened)}>
-            <ModalTitle>{restaurantSelected?.name}</ModalTitle>
-            <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
-            <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
-            <ModalContent>{restaurantSelected?.opening_hours?.open_now ? 'Aberto Agora ;-)' : 'Fechado no Momento :-('}</ModalContent>
+            {restaurantSelected ? (
+                <>
+                    <ModalTitle>{restaurantSelected?.name}</ModalTitle>
+                    <ModalContent>{restaurantSelected?.formatted_phone_number}</ModalContent>
+                    <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
+                    <ModalContent>{restaurantSelected?.opening_hours?.open_now 
+                        ? 'Aberto Agora ;-)' 
+                        : 'Fechado no Momento :-('}
+                    </ModalContent>
+
+                </>
+            ) : (
+                <>
+                    <Skeleton width="10px" height="10px" />
+                    <Skeleton width="10px" height="10px" />
+                    <Skeleton width="10px" height="10px" />
+                    <Skeleton width="10px" height="10px" />
+                </>
+            )}
         </Modal>
     </Wrapper>
     );
