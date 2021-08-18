@@ -4,8 +4,7 @@ import Slider from "react-slick";
 
 export const Wrapper = styled.div`
     display: flex;
-    flex-direction: row;
-    `;
+`;
 
 export const Container = styled.aside`
     background-color: ${(props) => props.theme.colors.background};

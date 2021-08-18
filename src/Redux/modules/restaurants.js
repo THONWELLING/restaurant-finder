@@ -19,7 +19,7 @@ export default function reducer(state = initialState, action) {
   }
 }
 
-export  function setRestaurants(restaurants) {
+export function setRestaurants(restaurants) {
   return {
     type: Types.SET_RESTAURANTS,
     payload: restaurants,

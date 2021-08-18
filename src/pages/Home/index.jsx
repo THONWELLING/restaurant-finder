@@ -92,7 +92,8 @@ const Home = () => {
                     <ModalContent>{restaurantSelected?.formatted_address}</ModalContent>
                     <ModalContent>{restaurantSelected?.opening_hours?.open_now 
                         ? 'Aberto Agora ;-)' 
-                        : 'Fechado no Momento :-('}
+                        : 'Fechado no Momento :-('
+                    }
                     </ModalContent>
 
                 </>

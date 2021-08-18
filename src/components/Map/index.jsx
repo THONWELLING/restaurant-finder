@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { GoogleApiWrapper, Map, Marker } from 'google-maps-react';
 
@@ -8,23 +8,23 @@ import { setRestaurants, setRestaurant} from '../../Redux/modules/restaurants';
 
 export const MapContainer = (props) => {
     const dispatch = useDispatch();
-    const { restaurants } = useSelector((state) => state.restaurants);
     const [map, setMap] = useState(null);
+    const { restaurants } = useSelector((state) => state.restaurants);
     const { google, query, placeId } = props;
 
     useEffect(() => {
         if(query) {
-            searchByQuery(query);
+            searchByQuery(map, query);
         }
-    }, [query]);
+    }, [searchByQuery, query, map]);
 
     useEffect(() => {
         if(placeId) {
-            getRestaurantInformation(placeId);
+            getRestaurantInfo(placeId);
         }
-    }, [placeId]);
+    }, [placeId, getRestaurantInfo]);
 
-    function getRestaurantInformation(placeId) {
+    function getRestaurantInfo(placeId) {
         const service = new google.maps.places.PlacesService(map);
         dispatch(setRestaurant(null));
         const request = {
@@ -51,10 +51,12 @@ export const MapContainer = (props) => {
             if (status === google.maps.places.PlacesServiceStatus.OK){
                 dispatch(setRestaurants(results));
             }
-        });
+        },
+        [dispatch, google]
+        );
     }
 
-    function searchNearby(map, center) {
+    const searchNearby = (map, center) => {
         const service = new google.maps.places.PlacesService(map);
         dispatch(setRestaurants([]));
 
@@ -62,7 +64,8 @@ export const MapContainer = (props) => {
             location: center,
             radius: '15000',
             type: ['restaurant'],
-        };
+        }
+
         service.nearbySearch(request, (results, status) => {
             if (status === google.maps.places.PlacesServiceStatus.OK) {
                 dispatch(setRestaurants(results));
